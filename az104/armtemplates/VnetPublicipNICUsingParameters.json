@@ -1,0 +1,95 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "networkInterfaces_ipConfig1_name": {
+            "defaultValue": "ipConfig123",
+            "type": "String"
+        },
+        "publicIPAddresses_az104labsvnetpublicip_externalid": {
+            "defaultValue": "/subscriptions/4ca28a33-5abc-45b9-bc8c-6a99bc61b4fc/resourceGroups/az104labs24july/providers/Microsoft.Network/publicIPAddresses/az104labsvnetpublicip123",
+            "type": "String"
+        },
+        "virtualNetworks_az104appnetwork_externalid": {
+            "defaultValue": "/subscriptions/4ca28a33-5abc-45b9-bc8c-6a99bc61b4fc/resourceGroups/az104labs24july/providers/Microsoft.Network/virtualNetworks/az104appnetwork123",
+            "type": "String"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "name": "az104appnetwork123",
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2022-07-01",
+            "location": "North Europe",
+
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.0.0.0/16"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "SubnetA",
+                        "properties": {
+                            "addressPrefix": "10.0.0.0/24"
+                        }
+                    },
+                    {
+                        "name": "SubnetB",
+                        "properties": {
+                            "addressPrefix": "10.0.1.0/24"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "az104labsvnetpublicip123",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2022-07-01",
+            "location": "North Europe",
+            "dependsOn": [ "[parameters('virtualNetworks_az104appnetwork_externalid')]" ],
+
+            "sku": {
+                "name": "Basic"
+            },
+            "properties": {
+                "publicIPAllocationMethod": "Dynamic"
+
+            }
+        },
+        {
+            "name": "az104labsnic123",
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2022-07-01",
+            "location": "North Europe",
+            "kind": "Regular",
+            "dependsOn": [ "[parameters('virtualNetworks_az104appnetwork_externalid')]", "[parameters('publicIPAddresses_az104labsvnetpublicip_externalid')]" ],
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "Ipv4config",
+                        "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_ipConfig1_name')), '/ipConfigurations/Ipv4config')]",
+                        "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
+                        "properties": {
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[parameters('publicIPAddresses_az104labsvnetpublicip_externalid')]"
+                            },
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_az104appnetwork_externalid'), '/subnets/SubnetA')]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "nicType": "Standard"
+            }
+        }
+    ],
+    "outputs": {}
+}
