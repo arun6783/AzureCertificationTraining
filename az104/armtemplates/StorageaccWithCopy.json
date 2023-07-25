@@ -1,0 +1,28 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "functions": [],
+    "variables": {},
+    "resources": [
+        
+        {
+            "name": "[concat('az104labssg2', copyIndex())]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2022-09-01",
+            "tags": {
+                "displayName": "storageaccount1"
+            },
+            "location": "North Europe",
+            "kind": "StorageV2",
+            "sku": {
+                "name": "Standard_LRS"
+            },
+            "copy":{
+                "count": 3,
+                "name": "storagecopy"
+            }
+        }
+    ],
+    "outputs": {}
+}
