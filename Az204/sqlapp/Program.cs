@@ -1,14 +1,12 @@
-using AspNetcoreWebApp.Services;
+using sqlapp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddTransient<IProductService, ProductService>();
+
 builder.Services.AddRazorPages();
 
-builder.Services.AddTransient<IProductsService, ProductsService>();
-
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -19,7 +17,6 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
 
 app.UseRouting();

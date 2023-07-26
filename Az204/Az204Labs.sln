@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzFunctionApp", "FunctionApp\AzFunctionApp\AzFunctionApp.csproj", "{BEBD0929-EF46-4C97-86A1-F8C54672CB8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetcoreWebApp", "SimpleWebApp\AspNetcoreWebApp\AspNetcoreWebApp.csproj", "{B1B54503-07BA-45B7-AFCE-88F54D29A14D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BEBD0929-EF46-4C97-86A1-F8C54672CB8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BEBD0929-EF46-4C97-86A1-F8C54672CB8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BEBD0929-EF46-4C97-86A1-F8C54672CB8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BEBD0929-EF46-4C97-86A1-F8C54672CB8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1B54503-07BA-45B7-AFCE-88F54D29A14D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1B54503-07BA-45B7-AFCE-88F54D29A14D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1B54503-07BA-45B7-AFCE-88F54D29A14D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1B54503-07BA-45B7-AFCE-88F54D29A14D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
