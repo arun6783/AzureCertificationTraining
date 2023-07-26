@@ -17,8 +17,12 @@ namespace AspNetcoreWebApp.Pages
         }
 
         public List<Product> Products { get; private set; }
+
+        public bool IsFeatureA { get; set; }
+
         public void OnGet()
         {
+            IsFeatureA = _productService.IsFaetureA().Result;
             Products = _productService.GetProducts();
         }
     }

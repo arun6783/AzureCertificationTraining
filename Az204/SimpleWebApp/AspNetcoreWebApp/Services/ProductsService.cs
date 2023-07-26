@@ -1,5 +1,6 @@
 ﻿using AspNetcoreWebApp.Models;
 using Microsoft.Extensions.Configuration;
+using Microsoft.FeatureManagement;
 using System.Data.SqlClient;
 
 namespace AspNetcoreWebApp.Services
@@ -8,14 +9,17 @@ namespace AspNetcoreWebApp.Services
     {
 
         private readonly IConfiguration _configuration;
-        public ProductsService(IConfiguration configuration)
+        private readonly IFeatureManager _featureManager;
+
+        public ProductsService(IConfiguration configuration, IFeatureManager featureManager)
         {
             _configuration = configuration;
+            _featureManager = featureManager;
         }
-        
+
         public List<Product> GetProducts()
         {
-            string connString = _configuration.GetConnectionString("SqlConnection").ToString();
+            string connString = _configuration["SqlConnection"].ToString();
             List<Product> _product_lst = new List<Product>();
             string _statement = "SELECT ProductID,ProductName,Quantity from Products";
             SqlConnection _connection = new SqlConnection(connString);
@@ -41,10 +45,18 @@ namespace AspNetcoreWebApp.Services
             _connection.Close();
             return _product_lst;
         }
+
+
+        public async Task<bool> IsFaetureA()
+        {
+            return await _featureManager.IsEnabledAsync("FeatureA");
+        }
+
     }
 
     public interface IProductsService
     {
+        Task<bool> IsFaetureA();
         List<Models.Product> GetProducts();
     }
 }

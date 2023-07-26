@@ -6,6 +6,10 @@
 
 <div class="text-center">
     <h1 class="display-4">This is a list of Products</h1>
+    @if (Model.IsFeatureA)
+    {
+        <h2>Feature A is enabled</h2>
+    }
     <table class="table table-bordered">
         <thead>
             <tr>
