@@ -8,12 +8,16 @@ string queueName = "appqueue";
 
 Console.WriteLine("Hello, World! Simple program to demostrate read, peek and send message to storage queue!!");
 
-//SendMessage("Test message 1");
-//SendMessage("Test message 2");
-
+SendMessage("Test message 1");
+SendMessage("Test message 2");
+SendMessage("Test message 3");
 //PeekMessage();
 
 ReceiveMessages();
+
+GetQueueLength();
+
+
 void SendMessage(string message)
 {
     QueueClient client = GetClient(connectionString, queueName);
@@ -30,6 +34,22 @@ void SendMessage(string message)
 }
 
 
+
+void GetQueueLength()
+{
+    QueueClient client = GetClient(connectionString, queueName);
+
+    if (client.Exists())
+    {
+        QueueProperties properties = client.GetProperties();
+
+        Console.WriteLine($"Number of messages in the queue {queueName} is {properties.ApproximateMessagesCount}");
+    }
+    else
+    {
+        Console.WriteLine($"queue {queueName} does not exist");
+    }
+}
 
 void PeekMessage()
 {
