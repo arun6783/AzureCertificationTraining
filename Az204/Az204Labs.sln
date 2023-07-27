@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetcoreWebApp", "SimpleWebApp\AspNetcoreWebApp\AspNetcoreWebApp.csproj", "{B1B54503-07BA-45B7-AFCE-88F54D29A14D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageQueueDemo", "AzureServicesConnect\StorageQueueDemo\StorageQueueDemo.csproj", "{5374EAAC-4EA0-4516-BE75-1FC05BD66C67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B1B54503-07BA-45B7-AFCE-88F54D29A14D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B1B54503-07BA-45B7-AFCE-88F54D29A14D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B1B54503-07BA-45B7-AFCE-88F54D29A14D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B1B54503-07BA-45B7-AFCE-88F54D29A14D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5374EAAC-4EA0-4516-BE75-1FC05BD66C67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5374EAAC-4EA0-4516-BE75-1FC05BD66C67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5374EAAC-4EA0-4516-BE75-1FC05BD66C67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5374EAAC-4EA0-4516-BE75-1FC05BD66C67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
