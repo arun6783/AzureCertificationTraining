@@ -2,29 +2,43 @@
 using Azure.Core.Pipeline;
 using Azure.Storage.Queues;
 using Azure.Storage.Queues.Models;
+using StorageQueueDemo;
+using System.Net.Http.Json;
+using System.Text.Json.Serialization;
 
 string connectionString = "DefaultEndpointsProtocol=https;AccountName=stgacdotnetdemo;AccountKey=Q39NNMNUVeSy/yICMwoGi2uEIKH9ZGvd/9Nmve9kpBWjLJ9e1t0P7faoeimc389sm8pTBz3pX5RU+AStV+mRlQ==;EndpointSuffix=core.windows.net";
 string queueName = "appqueue";
 
 Console.WriteLine("Hello, World! Simple program to demostrate read, peek and send message to storage queue!!");
 
-SendMessage("Test message 1");
-SendMessage("Test message 2");
-SendMessage("Test message 3");
+//SendMessage("Test message 1", true);
+//SendMessage("Test message 2", true);
+//SendMessage("Test message 3", true)
 //PeekMessage();
 
-ReceiveMessages();
+//ReceiveMessages();
 
-GetQueueLength();
+//GetQueueLength();
 
+SendOrderMessage();
 
-void SendMessage(string message)
+void SendOrderMessage()
+{
+    var order = new Order() { OrderID = "asd1", Quantity = 10 };
+    var order1 = new Order() { OrderID = "asd2", Quantity = 20 };
+
+    SendMessage(Newtonsoft.Json.JsonConvert.SerializeObject(order), true);
+    SendMessage(Newtonsoft.Json.JsonConvert.SerializeObject(order1), true);
+}
+
+void SendMessage(string message, bool asBase64=false)
 {
     QueueClient client = GetClient(connectionString, queueName);
 
     if (client.Exists())
     {
-        client.SendMessage(message);
+
+        client.SendMessage(asBase64 ? ToBase64Encode(message) : message);
         Console.WriteLine("Message has been sent");
     }
     else
@@ -99,4 +113,17 @@ void ReceiveMessages()
 static QueueClient GetClient(string connectionString, string queueName)
 {
     return new QueueClient(connectionString, queueName);
+}
+
+
+ static string ToBase64Encode(string plainText)
+{
+    var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+    return System.Convert.ToBase64String(plainTextBytes);
+}
+
+static string Base64Decode(string base64EncodedData)
+{
+    var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+    return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
 }
