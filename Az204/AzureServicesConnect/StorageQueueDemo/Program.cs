@@ -6,7 +6,7 @@ using StorageQueueDemo;
 using System.Net.Http.Json;
 using System.Text.Json.Serialization;
 
-string connectionString = "DefaultEndpointsProtocol=https;AccountName=stgacdotnetdemo;AccountKey=Q39NNMNUVeSy/yICMwoGi2uEIKH9ZGvd/9Nmve9kpBWjLJ9e1t0P7faoeimc389sm8pTBz3pX5RU+AStV+mRlQ==;EndpointSuffix=core.windows.net";
+string connectionString = "";
 string queueName = "appqueue";
 
 Console.WriteLine("Hello, World! Simple program to demostrate read, peek and send message to storage queue!!");
